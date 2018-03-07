@@ -46,10 +46,16 @@ function execSQLQuery(sqlQry, res){
   });
 
   connection.query(sqlQry, function(error, results, fields){
-      if(error) 
-        res.json(error);
-      else
+      if(error) {
+        //res.json(error);
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Something broke');        
+        console.log(error);
+      }
+      else {
         res.json(results);
+      }
       connection.end();
       console.log('executou!');
   });
