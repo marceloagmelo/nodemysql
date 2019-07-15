@@ -5,9 +5,9 @@ USER root
 ADD app $APP_HOME
 COPY Dockerfile $IMAGE_SCRIPTS/Dockerfile
 
-RUN chown -R nodejs:nodejs $APP_HOME && \
-    chown -R nodejs:nodejs $IMAGE_SCRIPTS_HOME && \
-    cd $APP_HOME && npm install
+RUN cd $APP_HOME && npm install && \
+    chown -R nodejs:nodejs $APP_HOME && \
+    chown -R nodejs:nodejs $IMAGE_SCRIPTS_HOME
 
 USER nodejs
 
